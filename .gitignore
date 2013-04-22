@@ -1,5 +1,11 @@
 *.DS_Store
 /.Trash
+/.bash_history
+/.dropbox
+/.gem
+/.npm
+/.pear
+/.rvm
 /Applications
 /Desktop
 /Documents
@@ -10,3 +16,4 @@
 /Music
 /Pictures
 /Public
+/code
