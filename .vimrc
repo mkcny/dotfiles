@@ -20,13 +20,15 @@ se nocompatible
 se mouse=a
 se shiftround
 se t_Co=256
+se wrap
 
-se noswapfile
-"se backup
-"se backupdir=~/.vim/backup
-"se directory=~/.vim/tmp
+se backup
+se backupdir=~/.vim/backup
+se directory=~/.vim/tmp
 
 se list listchars=tab:»·,trail:·
+
+filetype plugin on
 
 au BufWritePost *.php !php -l <afile>
 au BufWritePost *.rb !ruby -c <afile>
@@ -70,6 +72,9 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+" hax to get crontab editing to work
+set backupskip=/tmp/*,/private/tmp/*"
 
 " vundle stuff
 set rtp+=~/.vim/bundle/vundle/
