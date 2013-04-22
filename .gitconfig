@@ -1,0 +1,30 @@
+[user]
+  name = Michael Cooney
+  email = mike.cooney@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[core]
+  excludesfile = /Users/michael/.gitignore
+[alias]
+  ai = "add -i"
+  l = "log --pretty=format:'%Cgreen%h%Creset %Cblue<%an>%Creset %s %Cred(%ar)%Creset %Cgreen%d'"
+  s = status
+  p = pull
+  pm = "push mine"
+  po = "push origin"
+  d = diff
+  ds = "diff --staged"
+  c = "commit -v"
+  ca = "commit -av"
+  b = branch
+  br = "branch -r"
+  co = checkout
+  watchanged = whatchanged
+[merge]
+  tool = vimdiff
+[push]
+  default = upstream
+[branch]
+  autosetuprebase = always
