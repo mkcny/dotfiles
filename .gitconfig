@@ -9,17 +9,22 @@
   excludesfile = /Users/michael/.gitignore
 [alias]
   ai = "add -i"
+  ap = "add -p"
   l = "log --pretty=format:'%Cgreen%h%Creset %Cblue<%an>%Creset %s %Cred(%ar)%Creset %Cgreen%d'"
   s = status
+  st = !tig status
   p = pull
   pm = "push mine"
   po = "push origin"
+  f = fetch
+  fo = "fetch origin"
   d = diff
   ds = "diff --staged"
   c = "commit -v"
   ca = "commit -av"
   b = branch
   br = "branch -r"
+  bro = "!git branch -r | grep origin"
   co = checkout
   watchanged = whatchanged
 [merge]
