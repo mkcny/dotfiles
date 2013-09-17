@@ -26,6 +26,10 @@ alias h='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 
-alias f='find . -type f | grep -v \\.git | grep'
+function f () {
+  find . -type f ! -path "*/.git/*" ! -path "*/.vagrant/*" ! -name "*.pyc" \
+    | grep "$1"
+}
+
 alias ios='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
 
