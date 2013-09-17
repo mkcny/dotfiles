@@ -51,8 +51,8 @@ map <leader>o :vertical wincmd f<CR>
 map <F3> :se list!<CR>
 " removes whitespace from the ends of lines
 map <F4> :%s/\s\+$//<CR>
-" removes carriage returns
-map <F5> :%s///g<CR>
+
+:imap jj <Esc>
 
 " diable the arrow keys
 map <Left> :echo "no! Use H"<cr>
@@ -86,4 +86,5 @@ Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'editorconfig/editorconfig-vim'
 
