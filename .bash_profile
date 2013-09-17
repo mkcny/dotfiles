@@ -18,6 +18,7 @@ export HISTTIMEFORMAT='%F %T '
 alias vim='mvim -v'
 alias vi='mvim -v'
 
+alias ls='ls -Gh'
 alias l='ls -Gh'
 alias ll='ls -Glh'
 alias la='ls -laGh'
