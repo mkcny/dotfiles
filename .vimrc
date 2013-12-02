@@ -27,6 +27,8 @@ se backupdir=~/.vim/backup
 se directory=~/.vim/tmp
 
 se list listchars=tab:»·,trail:·
+" Makefiles are hard to read when you display tabs
+autocmd BufRead *Makefile* se nolist
 
 filetype plugin on
 
