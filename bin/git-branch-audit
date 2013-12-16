@@ -11,6 +11,6 @@ git remote prune origin
 branches=$(git branch -r | grep "origin/" | grep -v HEAD | grep -v master)
 
 for i in $branches; do
-  git log -n1 --pretty=format:"%ai %Cgreen%h%Creset %Cred(%ar)%Creset %Cblue<%an>%Creset%d" $i;
-  echo;
+  echo `git log -n1 --pretty=format:"%ai %Cgreen%h%Creset %Cred(%ar)%Creset %Cblue<%an>%Creset" $i` \
+    "$i -"`git log --oneline $i ^origin/master | wc -l`" commit(s) not in master"
 done | sort -r | cut -c27-
