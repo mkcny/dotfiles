@@ -28,7 +28,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 function f () {
-  find . -type f ! -path "*/.git/*" ! -path "*/.vagrant/*" ! -name "*.pyc" \
+  find . -type f ! -path "*/.git/*" ! -path "*/.vagrant/*" ! -path "*/node_modules/*" ! -name "*.pyc" \
     | grep "$1"
 }
 
