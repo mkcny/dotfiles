@@ -22,7 +22,7 @@
   ds = "diff --staged"
   c = "commit -v"
   ca = "commit -av"
-  b = branch
+  b = branch -v
   br = "branch -r"
   bro = "!git branch -r | grep origin"
   co = checkout
