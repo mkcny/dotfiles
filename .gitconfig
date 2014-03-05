@@ -18,6 +18,7 @@
   po = "push origin"
   f = fetch
   fo = "fetch origin"
+  fa = "fetch --all"
   d = diff
   ds = "diff --staged"
   c = "commit -v"
@@ -26,6 +27,7 @@
   br = "branch -r"
   bro = "!git branch -r | grep origin"
   co = checkout
+  cob = "checkout -b"
   watchanged = whatchanged
 [merge]
   tool = vimdiff
