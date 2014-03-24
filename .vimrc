@@ -32,6 +32,10 @@ autocmd BufRead *Makefile* se nolist
 
 filetype plugin on
 
+" maintain visual selection after indenting
+vmap < <gv
+vmap > >gv
+
 au BufWritePost *.php !php -l <afile>
 au BufWritePost *.rb !ruby -c <afile>
 
