@@ -82,6 +82,8 @@ inoremap <s-tab> <c-n>
 " hax to get crontab editing to work
 set backupskip=/tmp/*,/private/tmp/*"
 
+let g:ctrlp_user_command=['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
 " vundle stuff
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
