@@ -11,8 +11,11 @@ install mysql
 install jq
 install cloc
 install wget
+install imagemagick
 
 # important stuff
 install cowsay fortune sl
 
 cleanup
+
+doctor
