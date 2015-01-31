@@ -1,70 +1,48 @@
-syntax on
-se cursorline
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+execute pathogen#infect()
+
 se number
-se laststatus=2
-se winwidth=85
-se cc=80
-se clipboard=unnamed
-se incsearch
 se hlsearch
 se ignorecase
 se smartcase
-se autoindent
-se copyindent
-se scrolljump=5
-se expandtab
-se shiftwidth=2
-se tabstop=2
-se backspace=2
-se nocompatible
+se cursorline
+se clipboard=unnamed
+se winwidth=85
+se colorcolumn=80
 se mouse=a
-se shiftround
-se t_Co=256
-se wrap
-
-se backup
-se backupdir=~/.vim/backup
-se directory=~/.vim/tmp
-
 se list listchars=tab:»·,trail:·
-" Makefiles are hard to read when you display tabs
-autocmd BufRead *Makefile* se nolist
+se nobackup
+se directory=/tmp
+se t_Co=256
+se shiftwidth=2 tabstop=2 expandtab
 
-filetype plugin on
+se nocompatible
+filetype plugin indent on
+
+colors mkcny
+
+let mapleader = ","
+let g:mapleader = ","
+
+" open the file under the cursor
+map <leader>o :vertical wincmd f<CR>
+" trim whitespace from the ends of lines
+map <leader>t :%s/\s\+$//<CR>
+" toggle showing whitespace
+map <leader>l :se list!<CR>
+" use CtrlP to switch between buffers
+map <leader>b :CtrlPBuffer<CR>
+" avoid pinky strain
+imap jj <Esc>
+" enter key clears search highlighting
+nnoremap <CR> :nohlsearch<cr>
 
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
 
-au BufWritePost *.php !php -l <afile>
-au BufWritePost *.rb !ruby -c <afile>
-
-" return to the last position in a file when reopening
-au BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
-
-let mapleader = ","
-let g:mapleader = ","
-
-" enter key clears search highlighting
-nnoremap <CR> :nohlsearch<cr>
-
-map <leader>o :vertical wincmd f<CR>
-
-" shows tab characters, etc
-map <F3> :se list!<CR>
-" removes whitespace from the ends of lines
-map <F4> :%s/\s\+$//<CR>
-
-:imap jj <Esc>
-
-" diable the arrow keys
-map <Left> :echo "no! Use H"<cr>
-map <Right> :echo "no! Use L"<cr>
-map <Up> :echo "no! Use K"<cr>
-map <Down> :echo "no! Use J"<cr>
+let g:ctrlp_user_command=['.git', "cd %s && git ls-files . -co --exclude-standard | grep -v node_modules | grep -v -E '(png|jpg|gif)$'", 'find %s -type f']
 
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -78,21 +56,3 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
-
-" hax to get crontab editing to work
-set backupskip=/tmp/*,/private/tmp/*"
-
-let g:ctrlp_user_command=['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-
-" vundle stuff
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'editorconfig/editorconfig-vim'
-
