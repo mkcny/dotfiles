@@ -36,3 +36,4 @@ function f () {
 
 alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app'
 
+FILE=$HOME/.bash_profile.local && test -f $FILE && source $FILE
