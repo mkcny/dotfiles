@@ -34,5 +34,5 @@ function f () {
     | grep "$1"
 }
 
-alias ios='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app'
 
