@@ -27,6 +27,7 @@ alias h='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# jump to the root folder of a git repo
 alias a='cd $(git rev-parse --show-cdup)'
 
 function f () {
