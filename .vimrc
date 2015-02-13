@@ -25,18 +25,31 @@ colors mkcny
 let mapleader = ","
 let g:mapleader = ","
 
+
 " open the file under the cursor
-map <leader>o :vertical wincmd f<CR>
+nnoremap <leader>o :vertical wincmd f<CR>
+
 " trim whitespace from the ends of lines
-map <leader>t :%s/\s\+$//<CR>
+nnoremap <leader>t :%s/\s\+$//<CR>
+
 " toggle showing whitespace
-map <leader>l :se list!<CR>
+nnoremap <leader>l :se list!<CR>
+
 " use CtrlP to switch between buffers
-map <leader>b :CtrlPBuffer<CR>
-" avoid pinky strain
-imap jj <Esc>
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" search word under cursor
+nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" backslash to search within project
+nnoremap \ :Ag<SPACE>
+
 " enter key clears search highlighting
 nnoremap <CR> :nohlsearch<cr>
+
+" avoid pinky strain
+inoremap jj <Esc>
+
 
 " maintain visual selection after indenting
 vmap < <gv
