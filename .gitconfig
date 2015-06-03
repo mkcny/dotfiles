@@ -25,7 +25,7 @@
   ca = "commit -av"
   b = branch -v
   br = "branch -r"
-  bro = "!git branch -r | grep origin"
+  bro = "!git branch -r | grep '^\\s*origin/'"
   co = checkout
   cob = "checkout -b"
   watchanged = whatchanged
