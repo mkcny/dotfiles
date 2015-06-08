@@ -73,3 +73,5 @@ inoremap <s-tab> <c-n>
 if filereadable(glob("$HOME/.vimrc.local"))
     source $HOME/.vimrc.local
 endif
+
+let g:airline_powerline_fonts = 1
