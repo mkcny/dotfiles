@@ -70,8 +70,8 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
+let g:airline_powerline_fonts = 1
+
 if filereadable(glob("$HOME/.vimrc.local"))
     source $HOME/.vimrc.local
 endif
-
-let g:airline_powerline_fonts = 1
