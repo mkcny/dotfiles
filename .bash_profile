@@ -2,7 +2,18 @@ export PATH=/usr/local/bin:$PATH:$HOME/bin:/usr/local/share/npm/bin
 
 source ~/bin/git-completion.bash
 source ~/bin/git-prompt.sh
-export PS1='\n\[\e[1;30m\]\t\[\e[0m\] \[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[m\]\[\e[1;33m\] $(__git_ps1 "→ %s") \[\e[1;37m\]\n\[\e[0;31m\]\$\[\e[0m\] '
+
+PS1_TIME='\[\e[1;30m\]\t\[\e[0m\]'
+PS1_USER_AT_HOST='\[\e[1;32m\]\u@local\[\e[0m\]'
+PS1_PATH='\[\e[1;34m\]\w\[\e[m\]\[\e[1;33m\]'
+PS1_GIT_BRANCH='$(__git_ps1 "→ %s")'
+PS1_PROMPT='\[\e[1;37m\]\n\[\e[0;31m\]\$\[\e[0m\]'
+
+if [[ `whoami` == "vagrant" ]]; then
+  PS1_USER_AT_HOST='\[\e[1;35m\]\u@\h\[\e[0m\]'
+fi
+
+export PS1="\n$PS1_TIME $PS1_USER_AT_HOST:$PS1_PATH $PS1_GIT_BRANCH $PS1_PROMPT "
 
 # colours for man
 export LESS_TERMCAP_mb=$'\E[01;31m'
