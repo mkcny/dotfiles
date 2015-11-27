@@ -41,6 +41,12 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 " search word under cursor
 nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" use fugitive to show the blame
+nnoremap <leader>g :Gblame<CR>
+
+" close quickfix
+nnoremap <leader>c :ccl<CR>
+
 " backslash to search within project
 nnoremap \ :Ag<SPACE>
 
