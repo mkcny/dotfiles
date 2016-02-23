@@ -43,6 +43,12 @@ alias h='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+alias ber='bundle exec rake'
+alias bert='bundle exec rake test'
+alias berc='bundle exec rails console'
+alias be='bundle exec'
+alias bi='bundle install'
+
 # jump to the root folder of a git repo
 alias a='cd $(git rev-parse --show-cdup)'
 
