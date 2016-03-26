@@ -15,6 +15,8 @@ fi
 
 export PS1="\n$PS1_TIME $PS1_USER_AT_HOST:$PS1_PATH $PS1_GIT_BRANCH $PS1_PROMPT "
 
+export EDITOR=/usr/local/bin/nvim
+
 # colours for man
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;34m'

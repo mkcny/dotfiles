@@ -7,7 +7,6 @@
   status = auto
 [core]
   excludesfile = /Users/michael/.gitignore
-	editor = /usr/bin/vim
 [alias]
   ai = "add -i"
   ap = "add -p"
