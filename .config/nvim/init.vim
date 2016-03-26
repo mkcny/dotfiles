@@ -1,6 +1,17 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+call plug#begin()
 
-execute pathogen#infect()
+Plug 'airblade/vim-gitgutter'
+Plug 'benekastah/neomake'
+Plug 'bling/vim-airline'
+Plug 'kchmck/vim-coffee-script'
+Plug 'rking/ag.vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+
+call plug#end()
 
 se number
 se hlsearch
@@ -14,10 +25,9 @@ se mouse=a
 se list listchars=tab:»·,trail:·
 se nobackup
 se directory=/tmp
-se t_Co=256
 se shiftwidth=2 tabstop=2 expandtab
+se autoread
 
-se nocompatible
 filetype plugin indent on
 
 colors mkcny
@@ -35,17 +45,12 @@ nnoremap <leader>t :%s/\s\+$//<CR>
 " toggle showing whitespace
 nnoremap <leader>l :se list!<CR>
 
-" use CtrlP to switch between buffers
-nnoremap <leader>b :CtrlPBuffer<CR>
-
 " search word under cursor
 nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <leader>a :Ag! --ignore test "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " use fugitive to show the blame
 nnoremap <leader>g :Gblame<CR>
-
-" close quickfix
-nnoremap <leader>c :ccl<CR>
 
 " backslash to search within project
 nnoremap \ :Ag<SPACE>
@@ -56,12 +61,18 @@ nnoremap <CR> :nohlsearch<cr>
 " avoid pinky strain
 inoremap jj <Esc>
 
+" close quickfix
+nnoremap <space> :ccl<CR>
+
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
-
-let g:ctrlp_user_command=['.git', "cd %s && git ls-files . -co --exclude-standard | grep -v node_modules | grep -v -E '(png|jpg|gif)$'", 'find %s -type f']
 
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -78,6 +89,11 @@ inoremap <s-tab> <c-n>
 
 let g:airline_powerline_fonts = 1
 
+autocmd! BufWritePost,BufEnter * Neomake
+
 if filereadable(glob("$HOME/.vimrc.local"))
     source $HOME/.vimrc.local
 endif
+
+set rtp+=/usr/local/opt/fzf
+nnoremap <silent> <c-p> :FZF -m<CR>

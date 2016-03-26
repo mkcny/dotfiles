@@ -27,10 +27,10 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export HISTTIMEFORMAT='%F %T '
 
 alias ls='ls -h --color=auto'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 
 if [[ `uname` == "Darwin" ]]; then
-  alias vim='mvim -v'
   alias ls='ls -GhF'
 fi
 
