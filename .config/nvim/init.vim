@@ -64,11 +64,11 @@ inoremap jj <Esc>
 " close quickfix
 nnoremap <space> :ccl<CR>
 
-" Move around splits with <c-hjkl>
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+" Move around splits with <S-hjkl>
+nnoremap <S-h> <C-W>h
+nnoremap <S-j> <C-W>j
+nnoremap <S-k> <C-W>k
+nnoremap <S-l> <C-W>l
 
 " maintain visual selection after indenting
 vmap < <gv
