@@ -1,12 +1,11 @@
+[include]
+  path = .gitconfig.local
 [user]
   name = Michael Cooney
-  email = mike.cooney@gmail.com
 [color]
   branch = auto
   diff = auto
   status = auto
-[core]
-  excludesfile = /Users/michael/.gitignore
 [alias]
   ai = "add -i"
   ap = "add -p"
