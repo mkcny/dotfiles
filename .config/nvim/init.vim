@@ -52,7 +52,7 @@ nnoremap <leader>a :Ag! --ignore test "\b<C-R><C-W>\b"<CR>:cw<CR>
 " use fugitive to show the blame
 nnoremap <leader>g :Gblame<CR>
 
-nnoremap <leader>q :q<CR>
+nnoremap <S-q> :q<CR>
 
 " backslash to search within project
 nnoremap \ :Ag<SPACE>
