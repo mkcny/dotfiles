@@ -52,7 +52,8 @@ nnoremap <leader>a :Ag! --ignore test "\b<C-R><C-W>\b"<CR>:cw<CR>
 " use fugitive to show the blame
 nnoremap <leader>g :Gblame<CR>
 
-nnoremap <S-q> :q<CR>
+" easier quitting
+nnoremap <C-q> :q<CR>
 
 " backslash to search within project
 nnoremap \ :Ag<SPACE>
@@ -66,11 +67,17 @@ inoremap jj <Esc>
 " close quickfix
 nnoremap <space> :ccl<CR>
 
-" Move around splits with <S-hjkl>
-nnoremap <S-h> <C-W>h
-nnoremap <S-j> <C-W>j
-nnoremap <S-k> <C-W>k
-nnoremap <S-l> <C-W>l
+" Move around splits with <C-hjkl>
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+
+" hopefully temporary hack to get the split navigation above working properly
+" in neovim
+if has('nvim')
+    nmap <BS> <C-W>h
+endif
 
 " maintain visual selection after indenting
 vmap < <gv
