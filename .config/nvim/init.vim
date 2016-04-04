@@ -55,6 +55,9 @@ nnoremap <leader>g :Gblame<CR>
 " easier quitting
 nnoremap <C-q> :q<CR>
 
+" disable Ex mode
+nnoremap Q <Nop>
+
 " backslash to search within project
 nnoremap \ :Ag<SPACE>
 
