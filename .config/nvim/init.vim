@@ -76,12 +76,6 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 
-" hopefully temporary hack to get the split navigation above working properly
-" in neovim
-if has('nvim')
-    nmap <BS> <C-W>h
-endif
-
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
