@@ -9,10 +9,6 @@ PS1_PATH='\[\e[1;34m\]\w\[\e[m\]\[\e[1;33m\]'
 PS1_GIT_BRANCH='$(__git_ps1 "→ %s")'
 PS1_PROMPT='\[\e[1;37m\]\n\[\e[0;31m\]\$\[\e[0m\]'
 
-if [[ `whoami` == "vagrant" ]]; then
-  PS1_USER_AT_HOST='\[\e[1;35m\]\u@\h\[\e[0m\]'
-fi
-
 export PS1="\n$PS1_TIME $PS1_USER_AT_HOST:$PS1_PATH $PS1_GIT_BRANCH $PS1_PROMPT "
 
 export EDITOR=/usr/local/bin/nvim
@@ -30,20 +26,10 @@ export HISTTIMEFORMAT='%F %T '
 
 alias ls='ls -h --color=auto'
 alias vi='nvim'
-alias vim='nvim'
 
 if [[ `uname` == "Darwin" ]]; then
   alias ls='ls -GhF'
 fi
-
-alias ls='ls -GhF'
-alias l='ls'
-alias ll='ls -l'
-alias la='ls -la'
-
-alias h='cd ~'
-alias ..='cd ..'
-alias ...='cd ../..'
 
 alias ber='bundle exec rake'
 alias bert='bundle exec rake test'
