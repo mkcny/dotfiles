@@ -2,8 +2,7 @@ call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
-Plug 'bling/vim-airline'
-Plug 'kchmck/vim-coffee-script'
+Plug 'lambdatoast/elm.vim'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -26,7 +25,6 @@ se list listchars=tab:»·,trail:·
 se nobackup
 se directory=/tmp
 se shiftwidth=2 tabstop=2 expandtab
-se autoread
 
 filetype plugin indent on
 
@@ -93,13 +91,7 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-let g:airline_powerline_fonts = 1
-
 autocmd! BufWritePost,BufEnter * Neomake
-
-if filereadable(glob("$HOME/.vimrc.local"))
-    source $HOME/.vimrc.local
-endif
 
 set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <c-p> :FZF -m<CR>
