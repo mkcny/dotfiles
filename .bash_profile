@@ -40,9 +40,8 @@ alias bi='bundle install'
 # jump to the root folder of a git repo
 alias a='cd $(git rev-parse --show-cdup)'
 
-function f () {
-  find . -type f ! -path "*/.git/*" ! -path "*/.vagrant/*" ! -path "*/node_modules/*" ! -name "*.pyc" \
-    | grep "$1"
-}
+alias ag='ag --color-path "32" --color-match "31" --color-line-number "34"'
+
+function f () { git ls-files | grep "$*"; }
 
 FILE=$HOME/.bash_profile.local && test -f $FILE && source $FILE
