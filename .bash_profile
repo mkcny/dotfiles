@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:$PATH:$HOME/bin:/usr/local/share/npm/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/share/npm/bin
 
 source ~/bin/git-completion.bash
 source ~/bin/git-prompt.sh
