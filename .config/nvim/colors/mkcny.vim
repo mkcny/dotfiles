@@ -9,5 +9,8 @@ hi GitGutterChange ctermbg=8 ctermfg=Yellow
 hi GitGutterDelete ctermbg=8 ctermfg=Red
 " not sure when this is used
 " hi GitGutterChangeDelete
-hi ColorColumn ctermbg=8
+hi ColorColumn ctermbg=black
 hi StatusLine ctermbg=black ctermfg=grey
+hi VertSplit ctermbg=NONE ctermfg=black
+
+se fillchars+=vert:\│

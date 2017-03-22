@@ -9,6 +9,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
+Plug 'kchmck/vim-coffee-script'
+Plug 'rust-lang/rust.vim'
+Plug '/usr/local/opt/fzf'
 
 call plug#end()
 
@@ -24,7 +27,7 @@ se mouse=a
 se list listchars=tab:»·,trail:·
 se nobackup
 se directory=/tmp
-se shiftwidth=2 tabstop=2 expandtab
+se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 filetype plugin indent on
 
@@ -36,12 +39,6 @@ let g:mapleader = ","
 
 " open the file under the cursor
 nnoremap <leader>o :vertical wincmd f<CR>
-
-" trim whitespace from the ends of lines
-nnoremap <leader>t :%s/\s\+$//<CR>
-
-" toggle showing whitespace
-nnoremap <leader>l :se list!<CR>
 
 " search word under cursor
 nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -93,5 +90,4 @@ inoremap <s-tab> <c-n>
 
 autocmd! BufWritePost,BufEnter * Neomake
 
-set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <c-p> :FZF -m<CR>
