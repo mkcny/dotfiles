@@ -22,7 +22,7 @@
   ds = "diff --staged"
   c = "commit -v"
   ca = "commit -av"
-  b = branch -vv --sort=-committerdate
+  b = branch -vv --sort=committerdate
   br = "branch -r"
   bro = "!git branch -r | grep '^\\s*origin/'"
   co = checkout
