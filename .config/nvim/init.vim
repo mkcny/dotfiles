@@ -1,21 +1,24 @@
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
-Plug 'benekastah/neomake'
-Plug 'lambdatoast/elm.vim'
+Plug 'neomake/neomake'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'kchmck/vim-coffee-script'
-Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-commentary'
+Plug 'dag/vim-fish'
+Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'ervandew/supertab'
 
 call plug#end()
 
-se number
 se hlsearch
 se ignorecase
 se smartcase
@@ -66,28 +69,17 @@ inoremap jj <Esc>
 nnoremap <space> :ccl<CR>
 
 " Move around splits with <C-hjkl>
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
+nnoremap <C-h> :wincmd h<CR>:wincmd =<CR>
+nnoremap <C-j> :wincmd j<CR>:wincmd =<CR>
+nnoremap <C-k> :wincmd k<CR>:wincmd =<CR>
+nnoremap <C-l> :wincmd l<CR>:wincmd =<CR>
 
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
 
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
-
 autocmd! BufWritePost,BufEnter * Neomake
 
 nnoremap <silent> <c-p> :FZF -m<CR>
+
+let g:deoplete#enable_at_startup = 1
