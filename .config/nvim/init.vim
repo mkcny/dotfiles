@@ -1,7 +1,7 @@
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -10,12 +10,12 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
-Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -74,11 +74,20 @@ nnoremap <C-j> :wincmd j<CR>:wincmd =<CR>
 nnoremap <C-k> :wincmd k<CR>:wincmd =<CR>
 nnoremap <C-l> :wincmd l<CR>:wincmd =<CR>
 
+" tab stuff
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>q :tabclose<CR>
+nnoremap <C-n> :tabprev<CR>
+nnoremap <C-m> :tabnext<CR>
+
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
 
-autocmd! BufWritePost,BufEnter * Neomake
+" ale config
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEWarning ctermbg=black
 
 nnoremap <silent> <c-p> :FZF -m<CR>
 
