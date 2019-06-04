@@ -12,10 +12,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
+Plug 'flrnprz/plastic'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 call plug#end()
 
@@ -34,7 +34,8 @@ se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 filetype plugin indent on
 
-colors mkcny
+set termguicolors
+colorscheme plastic
 
 let mapleader = ","
 let g:mapleader = ","
@@ -89,6 +90,14 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEWarning ctermbg=black
 
+" use fzf for ctrl+p search
 nnoremap <silent> <c-p> :FZF -m<CR>
 
-let g:deoplete#enable_at_startup = 1
+" coc config
+
+let g:go_def_mapping_enabled = 0 " disable vim-go :GoDef short cut (gd)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
