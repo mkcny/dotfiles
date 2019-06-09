@@ -14,7 +14,7 @@ Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
-Plug 'flrnprz/plastic'
+Plug 'flrnprz/plastic.vim'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 call plug#end()
