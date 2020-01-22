@@ -12,6 +12,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go'
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'flrnprz/plastic.vim'
@@ -58,7 +59,7 @@ nnoremap <C-q> :q<CR>
 nnoremap Q <Nop>
 
 " backslash to search within project
-nnoremap \ :Ag<SPACE>
+nnoremap \ :Rg<cr>
 
 " enter key clears search highlighting
 nnoremap <CR> :nohlsearch<cr>
