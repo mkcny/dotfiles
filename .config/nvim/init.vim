@@ -15,11 +15,15 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
-Plug 'flrnprz/plastic.vim'
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'chriskempson/base16-vim'
+Plug 'Shopify/shadowenv.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
+se hidden
 se hlsearch
 se ignorecase
 se smartcase
@@ -30,17 +34,19 @@ se colorcolumn=80
 se mouse=a
 se list listchars=tab:»·,trail:·
 se nobackup
+se nowritebackup
+se noswapfile
 se directory=/tmp
 se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+se signcolumn=yes
 
 filetype plugin indent on
 
 set termguicolors
-colorscheme plastic
+colorscheme base16-tomorrow-night
 
 let mapleader = ","
 let g:mapleader = ","
-
 
 " open the file under the cursor
 nnoremap <leader>o :vertical wincmd f<CR>
@@ -64,9 +70,6 @@ nnoremap \ :Rg<cr>
 " enter key clears search highlighting
 nnoremap <CR> :nohlsearch<cr>
 
-" avoid pinky strain
-inoremap jj <Esc>
-
 " close quickfix
 nnoremap <space> :ccl<CR>
 
@@ -80,7 +83,7 @@ nnoremap <C-l> :wincmd l<CR>:wincmd =<CR>
 nnoremap <leader>t :tabnew<CR>
 nnoremap <leader>q :tabclose<CR>
 nnoremap <C-n> :tabprev<CR>
-nnoremap <C-m> :tabnext<CR>
+"nnoremap <C-m> :tabnext<CR>
 
 " maintain visual selection after indenting
 vmap < <gv
@@ -102,3 +105,19 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
