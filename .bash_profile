@@ -21,11 +21,9 @@ if [[ `uname` == "Darwin" ]]; then
   alias ls='ls -GhF'
 fi
 
-alias ag='ag --color-path "32" --color-match "31" --color-line-number "34"'
-
 function f () { find . -type f | grep -i "$*"; }
 
-export FZF_DEFAULT_COMMAND='find . -type f'
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # lets ctrl-q be mapped in vim
 stty start undef
