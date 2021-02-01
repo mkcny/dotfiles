@@ -23,7 +23,8 @@ fi
 
 function f () { find . -type f | grep -i "$*"; }
 
-export FZF_DEFAULT_COMMAND='rg --files'
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export FZF_DEFAULT_COMMAND="rg --files"
 
 # lets ctrl-q be mapped in vim
 stty start undef
