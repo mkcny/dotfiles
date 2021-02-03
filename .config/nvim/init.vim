@@ -16,7 +16,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'Shopify/shadowenv.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'elixir-editors/vim-elixir'
