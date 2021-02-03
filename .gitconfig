@@ -6,10 +6,11 @@
   branch = auto
   diff = auto
   status = auto
+  ui = auto
 [alias]
   ai = "add -i"
   ap = "add -p"
-  l = "log --pretty=format:'%Cgreen%h%Creset %Cblue<%an>%Creset %s %Cred(%ar)%Creset %Cgreen%d'"
+  l = "log --pretty=format:'%Cgreen%h %C(yellow)%as %Cblue<%an> %Creset%s'"
   s = status
   st = !tig status
   p = pull
