@@ -7,9 +7,12 @@ ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/bin ~/
 
+# install vim plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #if [ $SPIN ]; then
-#  rm -f /usr/local/bin/node /usr/local/bin/nodejs
+#  sudo rm -f /usr/local/bin/node /usr/local/bin/nodejs
 #  sudo apt-get install -y fzf ripgrep nodejs
 #fi
 
