@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+ln -sf ~/dotfiles/.vimrc ~/
+ln -sf ~/dotfiles/.bash_profile ~/
+ln -sf ~/dotfiles/.config/* ~/.config
+ln -sf ~/dotfiles/.ripgreprc ~/
+ln -sf ~/dotfiles/.gitconfig ~/
+ln -sf ~/dotfiles/bin ~/
+
+
+if [ $SPIN ]; then
+  rm /usr/local/bin/node /usr/local/bin/nodejs
+  sudo apt-get install -y fzf ripgrep nodejs
+fi
+
