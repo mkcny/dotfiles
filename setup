@@ -8,8 +8,8 @@ ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/bin ~/
 
 
-if [ $SPIN ]; then
-  rm -f /usr/local/bin/node /usr/local/bin/nodejs
-  sudo apt-get install -y fzf ripgrep nodejs
-fi
+#if [ $SPIN ]; then
+#  rm -f /usr/local/bin/node /usr/local/bin/nodejs
+#  sudo apt-get install -y fzf ripgrep nodejs
+#fi
 
