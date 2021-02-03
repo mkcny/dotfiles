@@ -9,7 +9,7 @@ ln -sf ~/dotfiles/bin ~/
 
 
 if [ $SPIN ]; then
-  rm /usr/local/bin/node /usr/local/bin/nodejs
+  rm -f /usr/local/bin/node /usr/local/bin/nodejs
   sudo apt-get install -y fzf ripgrep nodejs
 fi
 
