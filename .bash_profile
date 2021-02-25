@@ -11,7 +11,7 @@ PS1_PROMPT='\[\e[1;37m\]\n\[\e[0;31m\]\$\[\e[0m\]'
 
 export PS1="\n$PS1_TIME $PS1_PATH $PS1_GIT_BRANCH $PS1_PROMPT "
 
-export EDITOR=/usr/local/bin/nvim
+export EDITOR=/usr/local/bin/vim
 
 export HISTTIMEFORMAT='%F %T '
 
