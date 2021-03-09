@@ -33,7 +33,7 @@ nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <leader>a :Ag! --ignore test "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " use fugitive to show the blame
-nnoremap <leader>g :Gblame<CR>
+nnoremap <leader>g :Git blame<CR>
 
 " easier quitting
 nnoremap <C-q> :q<CR>
