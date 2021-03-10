@@ -20,5 +20,7 @@ if [ $SPIN ]; then
 
   # install vim plugins
   vim -u ~/.vim/plugins.vim -c ':PlugInstall | qa!'
+
+  git config --global user.email "michael.cooney@shopify.com"
 fi
 
