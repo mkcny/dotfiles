@@ -9,10 +9,7 @@ ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/bin ~/
 
 if [ $SPIN ]; then
-  # remove outdated nodejs
-  sudo rm -f /usr/local/bin/node /usr/local/bin/nodejs
-
-  sudo apt-get install -y fzf ripgrep nodejs rsync silversearcher-ag
+  sudo apt-get install -y fzf ripgrep rsync silversearcher-ag
 
   # install vim plug
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
