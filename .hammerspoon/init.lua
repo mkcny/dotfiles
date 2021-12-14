@@ -51,3 +51,11 @@ blah = hs.eventtap.new({hs.eventtap.event.types.otherMouseDown}, function(event)
 
     return false
 end):start()
+
+function audioDeviceChanged(arg)
+    local elgato = hs.audiodevice.findInputByName('Elgato Wave:3')
+    elgato:setDefaultInputDevice()
+end
+
+hs.audiodevice.watcher.setCallback(audioDeviceChanged)
+hs.audiodevice.watcher.start()
