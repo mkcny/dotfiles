@@ -9,6 +9,8 @@ ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/bin ~/
 
 if [ $SPIN ]; then
+  ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
+
   sudo apt-get install -y fzf ripgrep rsync silversearcher-ag
 
   # install vim plug
@@ -16,7 +18,7 @@ if [ $SPIN ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # install vim plugins
-  vim -u ~/.vim/plugins.vim -c ':PlugInstall | qa!'
+  nvim -u ~/.vim/plugins.vim -c ':PlugInstall | qa!'
 
   git config --global user.email "michael.cooney@shopify.com"
 fi
