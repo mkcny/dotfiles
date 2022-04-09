@@ -101,3 +101,13 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+
+" shared clipboard for spin
+if $SPIN == 1
+    let g:clipboard = {
+        \ 'name': 'pbcopy',
+        \ 'copy': {'+': 'pbcopy', '*': 'pbcopy'},
+        \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
+        \ 'cache_enabled': 1 }
+end
