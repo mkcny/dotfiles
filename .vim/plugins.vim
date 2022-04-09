@@ -19,6 +19,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'elixir-editors/vim-elixir'
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 

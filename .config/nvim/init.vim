@@ -66,6 +66,9 @@ nnoremap <C-n> :tabprev<CR>
 vmap < <gv
 vmap > >gv
 
+" toggle commenting for selected lines
+map <leader>/   <plug>NERDCommenterToggle<CR>gv
+
 " ale config
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
