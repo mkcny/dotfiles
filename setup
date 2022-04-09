@@ -19,6 +19,7 @@ if [ $SPIN ]; then
 
   # install vim plugins
   nvim -u ~/.vim/plugins.vim -c ':PlugInstall | qa!'
+  nvim -c ':CocInstall coc-rust-analyzer | qa!'
 
   git config --global user.email "michael.cooney@shopify.com"
 fi
