@@ -6,7 +6,6 @@ ln -sf ~/dotfiles/.bash_profile ~/
 ln -sf ~/dotfiles/.config/* ~/.config
 ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
-ln -sf ~/dotfiles/bin ~/
 
 if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
