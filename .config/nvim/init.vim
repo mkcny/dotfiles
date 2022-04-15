@@ -16,11 +16,12 @@ se noswapfile
 se directory=/tmp
 se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 se signcolumn=yes
+se noshowmode
 
 filetype plugin indent on
 
 set termguicolors
-colorscheme base16-tomorrow-night
+colorscheme base16-onedark
 
 let mapleader = ","
 let g:mapleader = ","
@@ -106,6 +107,7 @@ endfunction
 
 
 let g:lightline = {
+      \ 'colorscheme': 'one',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
