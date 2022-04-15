@@ -92,6 +92,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+set updatetime=300
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -122,7 +124,6 @@ function! LightlineFilename()
   return expand('%')
 endfunction
 
-
 " shared clipboard for spin
 if $SPIN == 1
     let g:clipboard = {
@@ -131,3 +132,11 @@ if $SPIN == 1
         \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
         \ 'cache_enabled': 1 }
 end
+
+lua << EOF
+require("bufferline").setup{
+  options = {
+    separator_style = "slant",
+    diagnostics = "coc"
+  }
+}

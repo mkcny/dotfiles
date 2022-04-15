@@ -20,6 +20,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'elixir-editors/vim-elixir'
 Plug 'preservim/nerdcommenter'
+Plug 'vim-test/vim-test'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 call plug#end()
 
