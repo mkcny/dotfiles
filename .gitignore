@@ -1,6 +1,4 @@
 .config/nvim/plugged
-.vim/plugged
-.vim/autoload
 .config/nvim/.netrwhist
 bin/*
 .DS_Store

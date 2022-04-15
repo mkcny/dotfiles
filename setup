@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-ln -sf ~/dotfiles/.config/nvim/init.vim ~/.vimrc
-ln -sf ~/dotfiles/.vim ~/
 ln -sf ~/dotfiles/.bash_profile ~/
 ln -sf ~/dotfiles/.config/* ~/.config
 ln -sf ~/dotfiles/.ripgreprc ~/
@@ -17,7 +15,7 @@ if [ $SPIN ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # install vim plugins
-  nvim -u ~/.vim/plugins.vim -c ':PlugInstall | qa!'
+  nvim -u ~/.config/nvim/plugins.vim -c ':PlugInstall | qa!'
   nvim -c ':CocInstall coc-rust-analyzer | qa!'
 
   git config --global user.email "michael.cooney@shopify.com"
