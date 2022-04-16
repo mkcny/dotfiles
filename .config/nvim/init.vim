@@ -17,10 +17,10 @@ se directory=/tmp
 se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 se signcolumn=yes
 se noshowmode
+se termguicolors
 
 filetype plugin indent on
 
-set termguicolors
 colorscheme base16-onedark
 
 let mapleader = ","
@@ -114,6 +114,11 @@ let g:lightline = {
       \   'filename': 'LightlineFilename',
       \ }
       \ }
+
+let g:lightline.enable = {
+    \ 'statusline': 1,
+    \ 'tabline': 0
+    \ }
 
 function! LightlineFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
