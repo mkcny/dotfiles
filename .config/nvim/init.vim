@@ -1,4 +1,40 @@
-source ~/.config/nvim/plugins.vim
+call plug#begin()
+
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'preservim/nerdcommenter'
+Plug 'vim-test/vim-test'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
+Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
+Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+
+Plug 'onsails/lspkind-nvim'
+
+Plug 'simrat39/rust-tools.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+call plug#end()
+
 
 se hidden
 se hlsearch
@@ -18,6 +54,7 @@ se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 se signcolumn=yes
 se noshowmode
 se termguicolors
+se completeopt=menu,menuone,noselect
 
 filetype plugin indent on
 
@@ -30,8 +67,10 @@ let g:mapleader = ","
 nnoremap <leader>o :vertical wincmd f<CR>
 
 " search word under cursor
-nnoremap <leader>f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap <leader>a :Ag! --ignore test "\b<C-R><C-W>\b"<CR>:cw<CR>
+map <leader>f :Telescope lsp_references<CR>
+
+" show problems with telescope
+nnoremap <leader>d :Telescope diagnostics<CR>
 
 " use fugitive to show the blame
 nnoremap <leader>g :Git blame<CR>
@@ -57,56 +96,16 @@ nnoremap <C-j> :wincmd j<CR>:wincmd =<CR>
 nnoremap <C-k> :wincmd k<CR>:wincmd =<CR>
 nnoremap <C-l> :wincmd l<CR>:wincmd =<CR>
 
-" tab stuff
-nnoremap <leader>t :tabnew<CR>
-nnoremap <leader>q :tabclose<CR>
-nnoremap <C-n> :tabprev<CR>
-"nnoremap <C-m> :tabnext<CR>
-
 " maintain visual selection after indenting
 vmap < <gv
 vmap > >gv
 
 " toggle commenting for selected lines
-map <leader>/   <plug>NERDCommenterToggle<CR>gv
-
-" ale config
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEWarning ctermbg=black
+map <leader>/ <plug>NERDCommenterToggle<CR>
+vmap <leader>/ <plug>NERDCommenterToggle<CR>gv
 
 " use fzf for ctrl+p search
 nnoremap <silent> <c-p> :FZF -m<CR>
-
-" coc config
-
-let g:go_def_mapping_enabled = 0 " disable vim-go :GoDef short cut (gd)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-set updatetime=300
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 
 let g:lightline = {
       \ 'colorscheme': 'one',
@@ -142,6 +141,74 @@ lua << EOF
 require("bufferline").setup{
   options = {
     separator_style = "slant",
-    diagnostics = "coc"
+    diagnostics = "nvim_lsp"
   }
 }
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "python", "javascript", "rust", "ruby", "typescript", "go", "vim", "lua"
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+local opts = { noremap=true, silent=true }
+local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+end
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+end
+
+require('rust-tools').setup({})
+
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+  }),
+  formatting = {
+    format = require('lspkind').cmp_format({})
+  }
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
+})
+EOF
