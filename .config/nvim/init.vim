@@ -6,8 +6,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdcommenter'
@@ -72,6 +70,9 @@ map <leader>f :Telescope lsp_references<CR>
 " show problems with telescope
 nnoremap <leader>d :Telescope diagnostics<CR>
 
+" use telescope for ctrl+p search
+nnoremap <silent> <c-p> :Telescope find_files<CR>
+
 " use fugitive to show the blame
 nnoremap <leader>g :Git blame<CR>
 
@@ -104,8 +105,6 @@ vmap > >gv
 map <leader>/ <plug>NERDCommenterToggle<CR>
 vmap <leader>/ <plug>NERDCommenterToggle<CR>gv
 
-" use fzf for ctrl+p search
-nnoremap <silent> <c-p> :FZF -m<CR>
 
 let g:lightline = {
       \ 'colorscheme': 'one',
