@@ -11,7 +11,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'vim-test/vim-test'
 
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -137,12 +136,7 @@ if $SPIN == 1
 end
 
 lua << EOF
-require("bufferline").setup{
-  options = {
-    separator_style = "slant",
-    diagnostics = "nvim_lsp"
-  }
-}
+require("bufferline").setup{}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
@@ -200,14 +194,5 @@ cmp.setup({
   formatting = {
     format = require('lspkind').cmp_format({})
   }
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-  }, {
-    { name = 'buffer' },
-  })
 })
 EOF
