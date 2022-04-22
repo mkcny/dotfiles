@@ -136,13 +136,22 @@ if $SPIN == 1
         \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
         \ 'cache_enabled': 1 }
 end
-]], true)
+]],
+  true
+)
 
-require("bufferline").setup{}
+require('bufferline').setup {}
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = {
-    "python", "javascript", "rust", "ruby", "typescript", "go", "vim", "lua"
+    'python',
+    'javascript',
+    'rust',
+    'ruby',
+    'typescript',
+    'go',
+    'vim',
+    'lua',
   },
   highlight = {
     enable = true,
@@ -150,7 +159,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -170,23 +179,23 @@ for _, lsp in pairs(servers) do
   }
 end
 
-require('rust-tools').setup({})
+require('rust-tools').setup {}
 
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
-cmp.setup({
+cmp.setup {
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert({
+  mapping = cmp.mapping.preset.insert {
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
+    ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
@@ -194,6 +203,6 @@ cmp.setup({
     { name = 'buffer' },
   }),
   formatting = {
-    format = require('lspkind').cmp_format({})
-  }
-})
+    format = require('lspkind').cmp_format {},
+  },
+}
