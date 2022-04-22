@@ -33,35 +33,37 @@ Plug 'nvim-telescope/telescope.nvim'
 
 vim.fn['plug#end']()
 
+vim.opt.hidden = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true -- Do not ignore case with capitals
+vim.opt.cursorline = true -- Do not ignore case with capitals
+vim.opt.clipboard = 'unnamed'
+vim.opt.winwidth = 85
+vim.opt.colorcolumn = 80
+vim.opt.mouse = 'a'
+vim.opt.listchars = { tab = '»·', trail = '·' }
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.directory = '/tmp'
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.signcolumn = 'yes'
+vim.opt.showmode = false
+vim.opt.termguicolors = true
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+vim.cmd [[filetype plugin indent on]]
+
+vim.cmd [[colorscheme base16-onedark]]
+
+vim.g.mapleader = ','
+
 vim.api.nvim_exec(
   [[
-se hidden
-se hlsearch
-se ignorecase
-se smartcase
-se cursorline
-se clipboard=unnamed
-se winwidth=85
-se colorcolumn=80
-se mouse=a
-se list listchars=tab:»·,trail:·
-se nobackup
-se nowritebackup
-se noswapfile
-se directory=/tmp
-se shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-se signcolumn=yes
-se noshowmode
-se termguicolors
-se completeopt=menu,menuone,noselect
-
-filetype plugin indent on
-
-colorscheme base16-onedark
-
-let mapleader = ","
-let g:mapleader = ","
-
 " open the file under the cursor
 nnoremap <leader>o :vertical wincmd f<CR>
 
