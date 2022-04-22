@@ -1,6 +1,5 @@
-vim.api.nvim_exec(
-  [[
-call plug#begin()
+local Plug = vim.fn['plug#']
+vim.fn['plug#begin']()
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-endwise'
@@ -13,14 +12,14 @@ Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'vim-test/vim-test'
 
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug('akinsho/bufferline.nvim', { tag = '*' })
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
-Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
-Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+Plug('hrsh7th/cmp-nvim-lsp', { branch = 'main' })
+Plug('hrsh7th/cmp-buffer', { branch = 'main' })
+Plug('hrsh7th/nvim-cmp', { branch = 'main' })
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -32,9 +31,10 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-call plug#end()
+vim.fn['plug#end']()
 
-
+vim.api.nvim_exec(
+  [[
 se hidden
 se hlsearch
 se ignorecase
