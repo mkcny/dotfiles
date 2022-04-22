@@ -1,3 +1,5 @@
+vim.api.nvim_exec(
+  [[
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
@@ -134,8 +136,8 @@ if $SPIN == 1
         \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
         \ 'cache_enabled': 1 }
 end
+]], true)
 
-lua << EOF
 require("bufferline").setup{}
 
 require'nvim-treesitter.configs'.setup {
@@ -195,4 +197,3 @@ cmp.setup({
     format = require('lspkind').cmp_format({})
   }
 })
-EOF
