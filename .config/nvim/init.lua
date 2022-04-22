@@ -106,40 +106,45 @@ vim.keymap.set('v', '>', '>gv', { remap = true })
 vim.keymap.set('', '<leader>/', '<plug>NERDCommenterToggle', { remap = true })
 vim.keymap.set('v', '<leader>/', '<plug>NERDCommenterToggle<cr>gv', { remap = true })
 
+vim.g.lightline = {
+  colorscheme = 'one',
+  component_function = {
+    filename = 'LightlineFilename',
+  },
+  enable = {
+    statusline = 1,
+    tabline = 0,
+  },
+}
+
 vim.api.nvim_exec(
   [[
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ }
-      \ }
-
-let g:lightline.enable = {
-    \ 'statusline': 1,
-    \ 'tabline': 0
-    \ }
-
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
-" shared clipboard for spin
-if $SPIN == 1
-    let g:clipboard = {
-        \ 'name': 'pbcopy',
-        \ 'copy': {'+': 'pbcopy', '*': 'pbcopy'},
-        \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
-        \ 'cache_enabled': 1 }
-end
-]],
+  function! LightlineFilename()
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+      return path[len(root)+1:]
+    endif
+    return expand('%')
+  endfunction
+  ]],
   true
 )
+
+if os.getenv 'SPIN' == '1' then
+  vim.g.clipboard = {
+    name = 'pbcopy',
+    copy = {
+      ['+'] = 'pbcopy',
+      ['*'] = 'pbcopy',
+    },
+    paste = {
+      ['+'] = 'pbpaste',
+      ['*'] = 'pbpaste',
+    },
+    cache_enabled = 1,
+  }
+end
 
 require('bufferline').setup {}
 
