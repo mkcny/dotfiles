@@ -40,7 +40,7 @@ vim.opt.smartcase = true -- Do not ignore case with capitals
 vim.opt.cursorline = true -- Do not ignore case with capitals
 vim.opt.clipboard = 'unnamed'
 vim.opt.winwidth = 85
-vim.opt.colorcolumn = 80
+vim.opt.colorcolumn = '80'
 vim.opt.mouse = 'a'
 vim.opt.listchars = { tab = '»·', trail = '·' }
 vim.opt.backup = false
