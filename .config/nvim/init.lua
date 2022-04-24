@@ -158,6 +158,7 @@ require('nvim-treesitter.configs').setup {
     'go',
     'vim',
     'lua',
+    'java',
   },
   highlight = {
     enable = true,
@@ -177,7 +178,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'gopls', 'java_language_server' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
