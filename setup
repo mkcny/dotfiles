@@ -1,18 +1,15 @@
 #!/usr/bin/bash
 
-ln -sf ~/dotfiles/.bash_profile ~/
-ln -sf ~/dotfiles/.config/* ~/.config
 ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
+ln -sf ~/dotfiles/.vimrc ~/
+ln -sf ~/dotfiles/.vim/* ~/.vim
 
 if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
 
-  sudo apt-get install -y fzf ripgrep rsync silversearcher-ag
-
-  # install vim plugins
-  nvim -c ':PlugInstall | qa!'
-
   git config --global user.email "michael.cooney@shopify.com"
+
+  vim -c ':PlugInstall | qa!'
 fi
 
