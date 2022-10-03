@@ -6,6 +6,7 @@ export EDITOR=vi
 alias rgit="rg -g '!*test*' -g '!*spec*' "
 
 export FZF_DEFAULT_COMMAND="rg --files"
+export TERM='xterm-256color'
 
 # tmux by default
 if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then

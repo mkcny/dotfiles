@@ -3,13 +3,13 @@
 ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/.vimrc ~/
-ln -sf ~/dotfiles/.vim/* ~/.vim
+ln -sf ~/dotfiles/.vim ~/.vim
 
 if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
 
   git config --global user.email "michael.cooney@shopify.com"
 
-  vim -c ':PlugInstall | qa!'
+  vim +PlugInstall +qall
 fi
 

@@ -12,6 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -83,3 +84,11 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+" shared clipboard for spin
+if $SPIN == 1
+  let g:clipboard = {
+    \ 'name': 'pbcopy',
+    \ 'copy': {'+': 'pbcopy', '*': 'pbcopy'},
+    \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
+    \ 'cache_enabled': 1 }
+end
