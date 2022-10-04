@@ -28,7 +28,7 @@ se nu
 se termguicolors
 se noshowmode
 
-colorscheme base16-onedark
+silent! colorscheme base16-onedark
 
 let mapleader = ","
 let g:mapleader = ","
