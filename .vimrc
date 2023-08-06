@@ -13,6 +13,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
