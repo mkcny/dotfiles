@@ -37,8 +37,8 @@ let g:mapleader = ","
 " enter key clears search highlighting
 nnoremap <CR> :nohlsearch<cr>
 
-" close quickfix
-nnoremap <space> :ccl<CR>
+" close quickfix & location list
+nnoremap <space> :lclose \| ccl<CR>
 
 " easier quitting
 nnoremap <C-q> :q<CR>
@@ -79,6 +79,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <leader>d :CocDiagnostics<CR>
+nnoremap <leader>D :CocList diagnostics<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
