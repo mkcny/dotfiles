@@ -10,9 +10,5 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-alias vi='nvim'
-
-export FZF_DEFAULT_COMMAND="git ls-files -o -m -c --exclude-standard"
-export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="rg --files"
 export EDITOR=vim
