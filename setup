@@ -4,6 +4,7 @@ ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/.vimrc ~/
 ln -sf ~/dotfiles/.vim ~/.vim
+mkdir -p ~/.config/coc
 
 if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
@@ -11,5 +12,12 @@ if [ $SPIN ]; then
   git config --global user.email "michael.cooney@shopify.com"
 
   vim +PlugInstall +qall
+
+  mkdir -p .config/nvim
+  ln -sf ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+  ln -sf ~/dotfiles/.vim/autoload ~/.config/nvim/autoload
+  ln -sf ~/dotfiles/.vim/plugged ~/.config/nvim/plugged
+
+  nvim +PlugInstall +qall
 fi
 
