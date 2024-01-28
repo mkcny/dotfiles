@@ -11,4 +11,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 export FZF_DEFAULT_COMMAND="rg --files"
-export EDITOR=vim
+export EDITOR=nvim
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+export PATH="/usr/local/sbin:$PATH"
