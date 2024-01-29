@@ -1,18 +1,13 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {"rust_analyzer", "pyright"},
+  ensure_installed = {
+    "rust_analyzer",
+    "pyright",
+  },
 })
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require("lspconfig").rust_analyzer.setup {
-  capabilities = capabilities
-}
-require("lspconfig").pyright.setup {
-  capabilities = capabilities
-}
-
 
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
@@ -23,3 +18,12 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
+
+require("lspconfig").rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+require("lspconfig").pyright.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}

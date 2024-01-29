@@ -22,7 +22,7 @@ vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
 --vim.keymap.set('n', 'Q', '<nop>')
 
 -- backslash to search within project
-vim.keymap.set('n', '\\', '<cmd>Rg<cr>')
+vim.keymap.set('n', '\\', '<cmd>Telescope live_grep<cr>')
 
 -- enter key clears search highlighting
 vim.keymap.set('n', '<cr>', '<cmd>nohlsearch<cr>')
