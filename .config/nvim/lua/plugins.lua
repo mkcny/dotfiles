@@ -13,6 +13,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'github/copilot.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/which-key.nvim'
+Plug 'folke/trouble.nvim'
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
@@ -32,3 +35,5 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
 vim.fn['plug#end']()
+
+require("which-key").setup {}
