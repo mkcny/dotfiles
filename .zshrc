@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 export FZF_DEFAULT_COMMAND="rg --files"
 export EDITOR=nvim
+alias vi=nvim
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh

@@ -1,39 +1,49 @@
-local Plug = vim.fn['plug#']
-vim.fn['plug#begin']()
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-endwise'
-Plug 'itchyny/lightline.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'preservim/nerdcommenter'
-Plug 'ervandew/supertab'
-Plug 'airblade/vim-gitgutter'
-Plug 'github/copilot.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'folke/which-key.nvim'
-Plug 'folke/trouble.nvim'
+require("lazy").setup({
+'tpope/vim-sensible',
+'tpope/vim-fugitive',
+'tpope/vim-rhubarb',
+'tpope/vim-endwise',
+'itchyny/lightline.vim',
+'chriskempson/base16-vim',
+'preservim/nerdcommenter',
+'ervandew/supertab',
+'airblade/vim-gitgutter',
+'github/copilot.vim',
+'nvim-lua/plenary.nvim',
+'nvim-telescope/telescope.nvim',
+'nvim-tree/nvim-web-devicons',
+'folke/which-key.nvim',
+'folke/trouble.nvim',
 
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 
 -- lsp
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
+'williamboman/mason.nvim',
+'williamboman/mason-lspconfig.nvim',
+'neovim/nvim-lspconfig',
 
 -- completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+'hrsh7th/cmp-nvim-lsp',
+'hrsh7th/cmp-buffer',
+'hrsh7th/cmp-path',
+'hrsh7th/cmp-cmdline',
+'hrsh7th/nvim-cmp',
 
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
-vim.fn['plug#end']()
+'hrsh7th/cmp-vsnip',
+'hrsh7th/vim-vsnip',
+})
 
 require("which-key").setup {}

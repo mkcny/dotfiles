@@ -8,7 +8,5 @@ if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
 
   git config --global user.email "michael.cooney@shopify.com"
-
-  nvim +PlugInstall +qall
 fi
 
