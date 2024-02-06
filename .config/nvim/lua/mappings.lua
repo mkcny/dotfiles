@@ -10,7 +10,8 @@ vim.g.mapleader = ','
 vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>')
 
 -- use telescope for ctrl+p search
-vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files<cr>')
+--vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<c-p>', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>")
 
 -- use fugitive to show the blame
 vim.keymap.set('n', '<leader>g', '<cmd>Git blame<cr>')
@@ -43,3 +44,6 @@ vim.keymap.set('v', '>', '>gv', { remap = true })
 -- toggle commenting for selected lines
 vim.keymap.set('', '<leader>/', '<plug>NERDCommenterToggle', { remap = true })
 vim.keymap.set('v', '<leader>/', '<plug>NERDCommenterToggle<cr>gv', { remap = true })
+
+-- lsp code actions
+vim.keymap.set('n', '<c-.>', "<cmd>lua vim.lsp.buf.code_action()<cr>")
