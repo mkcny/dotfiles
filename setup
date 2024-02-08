@@ -2,7 +2,7 @@
 
 ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
-ln -sf ~/dotfiles/.config ~/
+ln -sf ~/dotfiles/.config/nvim ~/.config
 
 if [ $SPIN ]; then
   ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
