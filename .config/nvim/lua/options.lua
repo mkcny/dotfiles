@@ -24,4 +24,5 @@ vim.opt.termguicolors = true
 
 --vim.cmd [[filetype plugin indent on]]
 
-vim.cmd [[colorscheme base16-onedark]]
+--vim.cmd [[colorscheme base16-onedark]]
+vim.cmd [[colorscheme tokyonight]]

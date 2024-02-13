@@ -17,7 +17,6 @@ require("lazy").setup({
 'tpope/vim-rhubarb',
 'tpope/vim-endwise',
 'itchyny/lightline.vim',
-'chriskempson/base16-vim',
 'preservim/nerdcommenter',
 'ervandew/supertab',
 'airblade/vim-gitgutter',
@@ -27,6 +26,13 @@ require("lazy").setup({
 'nvim-tree/nvim-web-devicons',
 'folke/which-key.nvim',
 'folke/trouble.nvim',
+
+--'chriskempson/base16-vim',
+--{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} },
+
+'hiphish/rainbow-delimiters.nvim',
+{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
 {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 
