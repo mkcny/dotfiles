@@ -1,0 +1,6 @@
+font-size = 16
+
+# Use option key as alt
+macos-option-as-alt = left
+keybind = alt+left=unbind
+keybind = alt+right=unbind

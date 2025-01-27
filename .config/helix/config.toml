@@ -1,0 +1,21 @@
+theme = "catppuccin_macchiato"
+
+[keys.normal]
+C-q = ":q"
+C-h = "jump_view_left"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-l = "jump_view_right"
+
+[editor]
+rulers = [120]
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
