@@ -5,7 +5,7 @@
 
 -- Easy system-wide shortcuts for my most-used apps
 hs.hotkey.bind({"ctrl"}, "1", function()
-    hs.application.launchOrFocus("Alacritty")
+    hs.application.launchOrFocus("Ghostty")
 end)
 
 hs.hotkey.bind({"ctrl"}, "2", function()
