@@ -25,10 +25,14 @@ require("lazy").setup({
 'nvim-telescope/telescope.nvim',
 'nvim-tree/nvim-web-devicons',
 'folke/which-key.nvim',
-'folke/trouble.nvim',
 
---'chriskempson/base16-vim',
---{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+{
+  "folke/trouble.nvim",
+  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  cmd = "Trouble",
+  keys = { },
+},
+
 { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} },
 
 'hiphish/rainbow-delimiters.nvim',
