@@ -1,6 +1,2 @@
-require "plugins"
-require "options"
-require "mappings"
-require "treesitter"
-require "completion"
-require "lsp"
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
