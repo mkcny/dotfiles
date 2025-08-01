@@ -19,3 +19,5 @@ source /usr/local/opt/chruby/share/chruby/auto.sh
 export PATH="/usr/local/sbin:$PATH"
 
 source <(fzf --zsh)
+
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc

@@ -2,6 +2,8 @@ vim.opt.number = true
 vim.opt.clipboard = "unnamed"
 vim.g.mapleader = ","
 vim.opt.ts = 4
+vim.opt.winwidth = 120
+vim.opt.winborder = "rounded"
 
 vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
@@ -16,13 +18,23 @@ vim.pack.add({
 
 vim.cmd("colorscheme tokyonight-moon")
 
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "taplo" })
 vim.diagnostic.config({ virtual_lines = true })
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 require('nvim-treesitter.configs').setup({
-	ensure_installed = { "lua", "rust", "gleam", "ruby", "go" },
+	ensure_installed = { "lua", "rust", "gleam", "ruby", "go", "toml" },
 })
+
+require 'lspconfig'.rust_analyzer.setup {
+	settings = {
+		["rust-analyzer"] = {
+			checkOnSave = {
+				command = "clippy"
+			}
+		}
+	}
+}
 
 require("ibl").setup()
 
@@ -36,7 +48,7 @@ require("blink.cmp").setup({
 })
 
 -- telescope
-vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files hidden=true<cr>')
 vim.keymap.set('n', '\\', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<leader>f', '<cmd>Telescope lsp_references<cr>')
