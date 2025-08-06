@@ -9,7 +9,7 @@ hs.hotkey.bind({"ctrl"}, "1", function()
 end)
 
 hs.hotkey.bind({"ctrl"}, "2", function()
-    hs.application.launchOrFocus("Firefox")
+    hs.application.launchOrFocus("Safari")
 end)
 
 hs.hotkey.bind({"ctrl"}, "3", function()
