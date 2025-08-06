@@ -85,6 +85,9 @@ vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<leader>f', '<cmd>Telescope lsp_references<cr>')
 vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 
+-- show git blame
+vim.keymap.set('n', '<leader>g', '<cmd>Git blame<cr>')
+
 -- toggle inlay type hints
 vim.keymap.set('n', '<leader>t', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>')
 

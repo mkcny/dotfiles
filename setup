@@ -3,10 +3,3 @@
 ln -sf ~/dotfiles/.ripgreprc ~/
 ln -sf ~/dotfiles/.gitconfig ~/
 ln -sf ~/dotfiles/.config/nvim ~/.config
-
-if [ $SPIN ]; then
-  ln -sf ~/dotfiles/.zshrc.spin ~/.zshrc
-
-  git config --global user.email "michael.cooney@shopify.com"
-fi
-
