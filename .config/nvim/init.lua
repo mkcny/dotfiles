@@ -9,8 +9,6 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 vim.pack.add({
-	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/Saghen/blink.cmp",
@@ -20,10 +18,11 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/tpope/vim-fugitive",
 	"https://github.com/tpope/vim-rhubarb",
-	"https://github.com/echasnovski/mini.diff",
+	"https://github.com/lewis6991/gitsigns.nvim",
 })
 
-require('mini.diff').setup()
+vim.cmd("colorscheme catppuccin-macchiato")
+
 require('lualine').setup({})
 require("ibl").setup()
 
@@ -36,14 +35,7 @@ require("blink.cmp").setup({
 	signature = { enabled = true }
 })
 
-require('nvim-treesitter.configs').setup({
-	ensure_installed = { "lua", "rust", "gleam", "ruby", "go", "toml" },
-	highlight = { enable = true },
-})
-
-vim.cmd("colorscheme catppuccin-macchiato")
-
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "taplo", "ruby_lsp" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam" })
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = {
@@ -52,31 +44,11 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.WARN] = "▲",
 			[vim.diagnostic.severity.HINT] = "⚑",
 			[vim.diagnostic.severity.INFO] = "»",
-
 		},
 	},
 })
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-			}
-		}
-	}
-})
-
-vim.lsp.config('rust_analyzer', {
-	settings = {
-		["rust-analyzer"] = {
-			cargo = { features = "all" },
-			checkOnSave = { command = "clippy" },
-		},
-	},
-})
 
 -- telescope
 vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files hidden=true<cr>')
@@ -88,15 +60,13 @@ vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 -- show git blame
 vim.keymap.set('n', '<leader>g', '<cmd>Git blame<cr>')
 
--- toggle inlay type hints
-vim.keymap.set('n', '<leader>t', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>')
-
 -- easier quitting
 vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
 
 -- lsp keys
 vim.keymap.set('n', '<c-.>', "<cmd>lua vim.lsp.buf.code_action()<cr>")
 vim.keymap.set('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<cr>")
+vim.keymap.set('n', '<leader>t', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>')
 
 -- Move around splits with <C-hjkl>
 vim.keymap.set('n', '<c-h>', '<cmd>wincmd h<cr><cmd>wincmd =<cr>')
