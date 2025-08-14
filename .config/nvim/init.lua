@@ -23,9 +23,8 @@ vim.pack.add({
 
 vim.cmd("colorscheme catppuccin-macchiato")
 
-require('lualine').setup({})
+require('lualine').setup({ sections = { lualine_x = { 'lsp_status', 'filetype' } } })
 require("ibl").setup()
-
 require("blink.cmp").setup({
 	keymap = {
 		preset = 'enter',
