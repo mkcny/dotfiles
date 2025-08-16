@@ -23,8 +23,16 @@ vim.pack.add({
 
 vim.cmd("colorscheme catppuccin-macchiato")
 
-require('lualine').setup({ sections = { lualine_x = { 'lsp_status', 'filetype' } } })
+require('lualine').setup({
+	sections = {
+		lualine_b = { 'branch', 'diff' },
+		lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1 } }, { 'filename' }, },
+		lualine_x = { 'lsp_status', 'diagnostics' }
+	}
+})
+
 require("ibl").setup()
+
 require("blink.cmp").setup({
 	keymap = {
 		preset = 'enter',
