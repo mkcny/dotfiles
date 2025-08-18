@@ -66,6 +66,7 @@ vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 
 -- show git blame
 vim.keymap.set('n', '<leader>g', '<cmd>Git blame<cr>')
+vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>')
 
 -- easier quitting
 vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
@@ -90,3 +91,7 @@ vim.keymap.set('n', '<space>', '<cmd>cclose<cr>')
 
 -- enter key clears search highlighting
 vim.keymap.set('n', '<cr>', '<cmd>nohlsearch<cr>')
+
+-- navigate to git changes
+vim.keymap.set('n', ']c', '<cmd>Gitsigns nav_hunk next<cr>')
+vim.keymap.set('n', '[c', '<cmd>Gitsigns nav_hunk prev<cr>')
