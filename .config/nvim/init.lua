@@ -19,6 +19,7 @@ vim.pack.add({
 	"https://github.com/tpope/vim-fugitive",
 	"https://github.com/tpope/vim-rhubarb",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/Shopify/shadowenv.vim",
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
@@ -26,7 +27,7 @@ vim.cmd("colorscheme catppuccin-macchiato")
 require('lualine').setup({
 	sections = {
 		lualine_b = { 'branch', 'diff' },
-		lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1 } }, { 'filename' }, },
+		lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1 } }, { 'filename', path = 1 }, },
 		lualine_x = { 'lsp_status', 'diagnostics' }
 	}
 })
@@ -42,7 +43,7 @@ require("blink.cmp").setup({
 	signature = { enabled = true }
 })
 
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = {
@@ -62,6 +63,7 @@ vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files hidden=true<cr>')
 vim.keymap.set('n', '\\', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<leader>f', '<cmd>Telescope lsp_references<cr>')
+vim.keymap.set('n', '<leader>s', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
 vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 
 -- show git blame

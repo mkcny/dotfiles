@@ -21,3 +21,5 @@ export PATH="/usr/local/sbin:$PATH"
 source <(fzf --zsh)
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
+alias sb='git checkout `git branch --sort=-committerdate --format="%(refname:short)" | fzf`'
