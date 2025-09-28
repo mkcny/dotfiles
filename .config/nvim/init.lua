@@ -9,17 +9,12 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 vim.pack.add({
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/Saghen/blink.cmp",
 	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	"https://github.com/catppuccin/nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/tpope/vim-fugitive",
-	"https://github.com/tpope/vim-rhubarb",
 	"https://github.com/lewis6991/gitsigns.nvim",
-	"https://github.com/Shopify/shadowenv.vim",
+	"https://github.com/folke/snacks.nvim",
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
@@ -33,14 +28,18 @@ require('lualine').setup({
 })
 
 require("ibl").setup()
+require('snacks')
 
-require("blink.cmp").setup({
-	keymap = {
-		preset = 'enter',
-		['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-		['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-	},
-	signature = { enabled = true }
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client then
+			if client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+				vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
+				vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+			end
+		end
+	end
 })
 
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
@@ -58,25 +57,20 @@ vim.diagnostic.config({
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
--- telescope
-vim.keymap.set('n', '<c-p>', '<cmd>Telescope find_files hidden=true<cr>')
-vim.keymap.set('n', '\\', '<cmd>Telescope live_grep<cr>')
-vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>')
-vim.keymap.set('n', '<leader>f', '<cmd>Telescope lsp_references<cr>')
-vim.keymap.set('n', '<leader>s', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
-vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
-
--- show git blame
-vim.keymap.set('n', '<leader>g', '<cmd>Git blame<cr>')
-vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<cr>')
+-- pickers
+vim.keymap.set('n', '<c-p>', function() Snacks.picker.files({ hidden = true }) end)
+vim.keymap.set('n', '\\', function() Snacks.picker.grep({ hidden = true }) end)
+vim.keymap.set('n', '<leader>d', Snacks.picker.diagnostics)
+vim.keymap.set('n', '<leader>r', Snacks.picker.lsp_references)
+vim.keymap.set('n', '<leader>s', Snacks.picker.lsp_workspace_symbols)
+vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
 
 -- easier quitting
 vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
 
 -- lsp keys
-vim.keymap.set('n', '<c-.>', "<cmd>lua vim.lsp.buf.code_action()<cr>")
-vim.keymap.set('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<cr>")
-vim.keymap.set('n', '<leader>t', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>')
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', '<leader>t', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
 
 -- Move around splits with <C-hjkl>
 vim.keymap.set('n', '<c-h>', '<cmd>wincmd h<cr><cmd>wincmd =<cr>')
@@ -94,6 +88,10 @@ vim.keymap.set('n', '<space>', '<cmd>cclose<cr>')
 -- enter key clears search highlighting
 vim.keymap.set('n', '<cr>', '<cmd>nohlsearch<cr>')
 
--- navigate to git changes
+-- git stuff
+local gitsigns = require('gitsigns')
+vim.keymap.set('n', '<leader>g', gitsigns.blame)
+vim.keymap.set('n', '<leader>gb', gitsigns.toggle_current_line_blame)
 vim.keymap.set('n', ']c', '<cmd>Gitsigns nav_hunk next<cr>')
 vim.keymap.set('n', '[c', '<cmd>Gitsigns nav_hunk prev<cr>')
+vim.api.nvim_create_user_command('Gbrowse', 'lua Snacks.gitbrowse()', {})
