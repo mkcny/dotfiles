@@ -16,6 +16,7 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/folke/snacks.nvim",
+	"https://github.com/akinsho/bufferline.nvim",
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
@@ -30,6 +31,7 @@ require('lualine').setup({
 
 require("ibl").setup()
 require('snacks')
+require("bufferline").setup {}
 
 require("blink.cmp").setup({
 	keymap = {
@@ -64,7 +66,13 @@ vim.keymap.set('n', '<leader>s', Snacks.picker.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
 
 -- easier quitting
-vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
+vim.keymap.set('n', '<c-q>', function()
+	if #vim.fn.getbufinfo({ buflisted = 1 }) > 1 then
+		vim.cmd('bdelete')
+	else
+		vim.cmd('quit')
+	end
+end)
 
 -- lsp keys
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
@@ -92,4 +100,4 @@ vim.keymap.set('n', '<leader>g', gitsigns.blame)
 vim.keymap.set('n', '<leader>gb', gitsigns.toggle_current_line_blame)
 vim.keymap.set('n', ']c', '<cmd>Gitsigns nav_hunk next<cr>')
 vim.keymap.set('n', '[c', '<cmd>Gitsigns nav_hunk prev<cr>')
-vim.api.nvim_create_user_command('Gbrowse', 'lua Snacks.gitbrowse()', {})
+vim.api.nvim_create_user_command('Gbrowse', function(_) Snacks.gitbrowse() end, {})
