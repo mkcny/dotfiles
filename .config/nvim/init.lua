@@ -20,7 +20,6 @@ vim.pack.add({
 	"https://github.com/folke/trouble.nvim",
 })
 
-
 vim.cmd("colorscheme catppuccin-macchiato")
 
 require('lualine').setup({
@@ -70,13 +69,7 @@ vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
 vim.keymap.set('n', '<leader>e', function() Snacks.picker.explorer({ hidden = true }) end)
 
 -- easier quitting
-vim.keymap.set('n', '<c-q>', function()
-	if #vim.fn.getbufinfo({ buflisted = 1 }) > 1 then
-		vim.cmd('bdelete')
-	else
-		vim.cmd('quit')
-	end
-end)
+vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
 
 -- lsp keys
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
