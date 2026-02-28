@@ -7,6 +7,7 @@ vim.opt.winborder = "rounded"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
+vim.opt.swapfile = false
 
 vim.pack.add({
 	"https://github.com/Saghen/blink.cmp",
@@ -16,8 +17,9 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/folke/snacks.nvim",
-	"https://github.com/akinsho/bufferline.nvim",
+	"https://github.com/folke/trouble.nvim",
 })
+
 
 vim.cmd("colorscheme catppuccin-macchiato")
 
@@ -25,13 +27,14 @@ require('lualine').setup({
 	sections = {
 		lualine_b = { 'branch', 'diff' },
 		lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1 } }, { 'filename', path = 1 }, },
-		lualine_x = { 'lsp_status', 'diagnostics' }
+		lualine_x = { 'lsp_status' },
+		lualine_y = { 'diagnostics' }
 	}
 })
 
+require("trouble").setup()
 require("ibl").setup()
 require('snacks')
-require("bufferline").setup {}
 
 require("blink.cmp").setup({
 	keymap = {
@@ -60,10 +63,11 @@ vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 -- pickers
 vim.keymap.set('n', '<c-p>', function() Snacks.picker.files({ hidden = true }) end)
 vim.keymap.set('n', '\\', function() Snacks.picker.grep({ hidden = true }) end)
-vim.keymap.set('n', '<leader>d', Snacks.picker.diagnostics)
+vim.keymap.set('n', '<leader>d', '<cmd>Trouble diagnostics toggle focus=true<cr>')
 vim.keymap.set('n', '<leader>r', Snacks.picker.lsp_references)
 vim.keymap.set('n', '<leader>s', Snacks.picker.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
+vim.keymap.set('n', '<leader>e', function() Snacks.picker.explorer({ hidden = true }) end)
 
 -- easier quitting
 vim.keymap.set('n', '<c-q>', function()
