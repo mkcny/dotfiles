@@ -32,15 +32,7 @@ require('lualine').setup({
 
 require("trouble").setup()
 require('snacks').setup({ indent = {} })
-
-require("blink.cmp").setup({
-	keymap = {
-		preset = 'enter',
-		['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-		['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-	},
-	signature = { enabled = true }
-})
+require("blink.cmp").setup({ keymap = { preset = 'enter' }, signature = { enabled = true } })
 
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
 vim.diagnostic.config({
