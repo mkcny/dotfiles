@@ -11,7 +11,6 @@ vim.opt.swapfile = false
 
 vim.pack.add({
 	"https://github.com/Saghen/blink.cmp",
-	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	"https://github.com/catppuccin/nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
@@ -32,8 +31,7 @@ require('lualine').setup({
 })
 
 require("trouble").setup()
-require("ibl").setup()
-require('snacks')
+require('snacks').setup({ indent = {} })
 
 require("blink.cmp").setup({
 	keymap = {
