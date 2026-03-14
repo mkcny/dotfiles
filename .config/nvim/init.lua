@@ -35,16 +35,11 @@ require('snacks').setup({ indent = {} })
 require("blink.cmp").setup({ keymap = { preset = 'enter' }, signature = { enabled = true } })
 
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
+
+local sev = vim.diagnostic.severity
 vim.diagnostic.config({
 	virtual_text = true,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "✘",
-			[vim.diagnostic.severity.WARN] = "▲",
-			[vim.diagnostic.severity.HINT] = "⚑",
-			[vim.diagnostic.severity.INFO] = "»",
-		},
-	},
+	signs = { text = { [sev.ERROR] = "", [sev.WARN] = "", [sev.HINT] = "", [sev.INFO] = "", } },
 })
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
