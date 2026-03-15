@@ -85,6 +85,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 local gitsigns = require('gitsigns')
 vim.keymap.set('n', '<leader>g', gitsigns.blame)
 vim.keymap.set('n', '<leader>gb', gitsigns.toggle_current_line_blame)
-vim.keymap.set('n', ']c', '<cmd>Gitsigns nav_hunk next<cr>')
-vim.keymap.set('n', '[c', '<cmd>Gitsigns nav_hunk prev<cr>')
+vim.keymap.set('n', ']c', function() gitsigns.nav_hunk('next') end)
+vim.keymap.set('n', '[c', function() gitsigns.nav_hunk('prev') end)
 vim.api.nvim_create_user_command('Gbrowse', function(_) Snacks.gitbrowse() end, {})
