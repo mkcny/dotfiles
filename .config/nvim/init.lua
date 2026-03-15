@@ -75,6 +75,11 @@ vim.keymap.set('n', '<space>', '<cmd>cclose<cr>')
 
 -- enter key clears search highlighting
 vim.keymap.set('n', '<cr>', '<cmd>nohlsearch<cr>')
+-- but not for quickfix
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = { "quickfix" },
+	callback = function() vim.keymap.set('n', '<CR>', '<CR>', { buffer = true }) end
+})
 
 -- git stuff
 local gitsigns = require('gitsigns')
