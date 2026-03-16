@@ -16,7 +16,6 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/folke/snacks.nvim",
-	"https://github.com/folke/trouble.nvim",
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
@@ -30,7 +29,6 @@ require('lualine').setup({
 	}
 })
 
-require("trouble").setup()
 require('snacks').setup({ indent = {} })
 require("blink.cmp").setup({ keymap = { preset = 'enter' }, signature = { enabled = true } })
 
@@ -38,7 +36,7 @@ vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls
 
 local sev = vim.diagnostic.severity
 vim.diagnostic.config({
-	virtual_text = true,
+	virtual_lines = true,
 	signs = { text = { [sev.ERROR] = "", [sev.WARN] = "", [sev.HINT] = "", [sev.INFO] = "", } },
 })
 
@@ -47,7 +45,7 @@ vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 -- pickers
 vim.keymap.set('n', '<c-p>', function() Snacks.picker.files({ hidden = true }) end)
 vim.keymap.set('n', '\\', function() Snacks.picker.grep({ hidden = true }) end)
-vim.keymap.set('n', '<leader>d', '<cmd>Trouble diagnostics toggle focus=true<cr>')
+vim.keymap.set('n', '<leader>d', Snacks.picker.diagnostics)
 vim.keymap.set('n', '<leader>r', Snacks.picker.lsp_references)
 vim.keymap.set('n', '<leader>s', Snacks.picker.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
