@@ -16,6 +16,7 @@ vim.pack.add({
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/folke/snacks.nvim",
+	"https://github.com/neovim/nvim-lspconfig"
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
