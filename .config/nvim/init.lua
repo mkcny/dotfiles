@@ -8,15 +8,18 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 vim.opt.swapfile = false
+vim.o.complete = ".,o"
+vim.o.completeopt = "fuzzy,menuone,noselect"
+vim.o.autocomplete = true
+vim.o.pumborder = "rounded"
 
 vim.pack.add({
-	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
 	"https://github.com/catppuccin/nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/folke/snacks.nvim",
-	"https://github.com/neovim/nvim-lspconfig"
+	"https://github.com/neovim/nvim-lspconfig",
 })
 
 vim.cmd("colorscheme catppuccin-macchiato")
@@ -31,7 +34,6 @@ require('lualine').setup({
 })
 
 require('snacks').setup({ indent = {} })
-require("blink.cmp").setup({ keymap = { preset = 'enter' }, signature = { enabled = true } })
 
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
 
