@@ -39,7 +39,6 @@ vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls
 
 local sev = vim.diagnostic.severity
 vim.diagnostic.config({
-	virtual_lines = true,
 	signs = { text = { [sev.ERROR] = "", [sev.WARN] = "", [sev.HINT] = "", [sev.INFO] = "", } },
 })
 
