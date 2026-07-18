@@ -26,14 +26,18 @@ vim.pack.add({
 vim.cmd("colorscheme catppuccin-macchiato")
 
 require('lualine').setup({ sections = { lualine_b = { 'branch' }, lualine_x = { 'lsp_status' }, lualine_y = { 'diagnostics' } } })
-require('snacks').setup({ indent = {} })
+require('snacks').setup({ indent = {}, notifier = {} })
 
 vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls", "zls" })
 
 local s = vim.diagnostic.severity
 vim.diagnostic.config({ signs = { text = { [s.ERROR] = "", [s.WARN] = "", [s.HINT] = "", [s.INFO] = "", } } })
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+vim.api.nvim_create_autocmd("BufWritePre", { callback = function(_) vim.lsp.buf.format() end })
+
+vim.api.nvim_create_autocmd("LspProgress", {
+	callback = function(_) vim.notify(vim.lsp.status(), "info", { id = "lsp", title = "LSP", }) end
+})
 
 -- pickers
 vim.keymap.set('n', '<c-p>', function() Snacks.picker.files({ hidden = true }) end)
