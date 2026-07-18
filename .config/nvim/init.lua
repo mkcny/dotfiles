@@ -8,10 +8,11 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 vim.opt.swapfile = false
-vim.o.complete = ".,o"
-vim.o.completeopt = "fuzzy,menuone,noselect"
-vim.o.autocomplete = true
-vim.o.pumborder = "rounded"
+
+vim.opt.complete:append("o")
+vim.opt.completeopt = { "fuzzy", "menuone", "noselect", "noinsert", "popup" }
+vim.opt.autocomplete = true
+vim.opt.pumborder = "rounded"
 
 vim.pack.add({
 	"https://github.com/catppuccin/nvim",
@@ -24,23 +25,13 @@ vim.pack.add({
 
 vim.cmd("colorscheme catppuccin-macchiato")
 
-require('lualine').setup({
-	sections = {
-		lualine_b = { 'branch', 'diff' },
-		lualine_c = { { "filetype", icon_only = true, separator = "", padding = { left = 1 } }, { 'filename', path = 1 }, },
-		lualine_x = { 'lsp_status' },
-		lualine_y = { 'diagnostics' }
-	}
-})
-
+require('lualine').setup({ sections = { lualine_b = { 'branch' }, lualine_x = { 'lsp_status' }, lualine_y = { 'diagnostics' } } })
 require('snacks').setup({ indent = {} })
 
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "gleam", "sorbet", "rubocop", "ts_ls", "zls" })
 
-local sev = vim.diagnostic.severity
-vim.diagnostic.config({
-	signs = { text = { [sev.ERROR] = "", [sev.WARN] = "", [sev.HINT] = "", [sev.INFO] = "", } },
-})
+local s = vim.diagnostic.severity
+vim.diagnostic.config({ signs = { text = { [s.ERROR] = "", [s.WARN] = "", [s.HINT] = "", [s.INFO] = "", } } })
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
@@ -51,7 +42,6 @@ vim.keymap.set('n', '<leader>d', Snacks.picker.diagnostics)
 vim.keymap.set('n', '<leader>r', Snacks.picker.lsp_references)
 vim.keymap.set('n', '<leader>s', Snacks.picker.lsp_workspace_symbols)
 vim.keymap.set('n', '<leader>b', Snacks.picker.buffers)
-vim.keymap.set('n', '<leader>e', function() Snacks.picker.explorer({ hidden = true }) end)
 
 -- easier quitting
 vim.keymap.set('n', '<c-q>', '<cmd>q<cr>')
@@ -73,18 +63,12 @@ vim.keymap.set('v', '>', '>gv', { remap = true })
 -- close quickfix
 vim.keymap.set('n', '<space>', '<cmd>cclose<cr>')
 
--- enter key clears search highlighting
-vim.keymap.set('n', '<cr>', '<cmd>nohlsearch<cr>')
--- but not for quickfix
-vim.api.nvim_create_autocmd("BufReadPost", {
-	pattern = { "quickfix" },
-	callback = function() vim.keymap.set('n', '<CR>', '<CR>', { buffer = true }) end
-})
+-- clear search highlighting
+vim.keymap.set('n', '<leader>c', '<cmd>nohlsearch<cr>')
 
 -- git stuff
 local gitsigns = require('gitsigns')
 vim.keymap.set('n', '<leader>g', gitsigns.blame)
-vim.keymap.set('n', '<leader>gb', gitsigns.toggle_current_line_blame)
 vim.keymap.set('n', ']c', function() gitsigns.nav_hunk('next') end)
 vim.keymap.set('n', '[c', function() gitsigns.nav_hunk('prev') end)
 vim.api.nvim_create_user_command('Gbrowse', function(_) Snacks.gitbrowse() end, {})
